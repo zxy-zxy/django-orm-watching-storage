@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import os
 import sys
-import dotenv
+from environs import Env
 
 if __name__ == '__main__':
-    dotenv.read_dotenv()
+    env = Env()
+    env.read_env()
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
     try:
         from django.core.management import execute_from_command_line

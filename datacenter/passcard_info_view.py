@@ -14,7 +14,7 @@ def passcard_info_view(request, passcode):
 
     this_passcard_visits = Visit.objects.filter(
         passcard=passcard, leaved_at__isnull=False
-    ).all()
+    )
 
     passcard_visits_to_render = [
         {

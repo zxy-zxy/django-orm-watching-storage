@@ -6,7 +6,7 @@ from .utils import get_duration, format_duration, is_visit_long
 
 def storage_information_view(request):
     non_closed_visits = (
-        Visit.objects.select_related('passcard').filter(leaved_at__isnull=True).all()
+        Visit.objects.select_related('passcard').filter(leaved_at__isnull=True)
     )
 
     non_closed_visits = [

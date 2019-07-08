@@ -1,27 +1,31 @@
 import os
+from environs import Env
+
+env = Env()
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('host'),
-        'PORT': os.getenv('port'),
-        'NAME': os.getenv('name'),
-        'USER': os.getenv('user'),
-        'PASSWORD': os.getenv('password'),
+        'HOST': env('HOST'),
+        'PORT': env('PORT'),
+        'NAME': env('NAME'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
     }
 }
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = 'REPLACE_ME'
+SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = True
+DEBUG = env.bool('DEBUG')
 
 ROOT_URLCONF = "project.urls"
 
 ALLOWED_HOSTS = ['*']
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -6,7 +6,14 @@ and display data.
 ```bash
 pip install -r requirements.txt
 ```
-* Update .env file
+* Update .env file (example.env provided)
+    * HOST
+    * PORT
+    * NAME(database name)
+    * USER
+    * PASSWORD
+    * SECRET_KEY
+    * DEBUG
 * Run application
 ```bash
 python main.py
