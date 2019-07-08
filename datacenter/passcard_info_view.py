@@ -16,17 +16,14 @@ def passcard_info_view(request, passcode):
         passcard=passcard, leaved_at__isnull=False
     ).all()
 
-    visits_to_render = []
-    for visit_obj in this_passcard_visits:
-        duration = get_duration(visit_obj)
-        visits_to_render.append({
+    passcard_visits_to_render = [
+        {
             'entered_at': visit_obj.entered_at,
-            'duration': format_duration(duration),
-            'is_strange': is_visit_long(visit_obj)
-        })
+            'duration': format_duration(get_duration(visit_obj)),
+            'is_strange': is_visit_long(visit_obj),
+        }
+        for visit_obj in this_passcard_visits
+    ]
 
-    context = {
-        "passcard": passcard,
-        "this_passcard_visits": visits_to_render
-    }
+    context = {"passcard": passcard, "this_passcard_visits": passcard_visits_to_render}
     return render(request, 'passcard_info.html', context)
